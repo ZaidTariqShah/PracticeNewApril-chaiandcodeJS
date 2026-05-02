@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="ul">
+        <li>Javascript</li>
+    </ul>
+    <script>
+        // let div = document.createElement("div");
+        // div.title = "Title"
+        // div.setAttribute("title","Real Title")
+
+        // // div.innerText = "I am a div";
+        // const textNode = document.createTextNode("I am a Custom Text Node");
+        // div.appendChild(textNode )
+        // document.body.append(div);
+        // console.log(div.textContent)
+        // console.log(div.title)
+
+        //FUNCTION
+        // function addLanguage(langName) {
+        //     const li = document.createElement("li");
+        //     li.innerText = `${langName}`;
+        //     document.querySelector(".ul").appendChild(li);
+        // }
+        // addLanguage("Python");
+        // addLanguage("C++");
+        // addLanguage("Rust");
+
+        function addOptLang(Lang) {
+            const li = document.createElement("li");
+            li.appendChild(document.createTextNode(`${Lang}`));
+            document.querySelector(".ul").appendChild(li);
+        }
+        addOptLang("Python");
+    </script>
+</body>
+</html>
