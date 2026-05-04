@@ -7,10 +7,10 @@
     <p>Asalamualikum</p>
     <button>Stop</button>
     <script>
-      function change() {
-        document.querySelector("p").innerText = "Walaikumassalam";
+      function change(args) {
+        document.querySelector("p").innerText = `${args}`;
       }
-      let stopIt = setTimeout(change, 3000);
+      let stopIt = setTimeout(change, 3000, "Walaikumassalam");
       document
         .querySelector("button")
         .addEventListener("click", function stop() {
