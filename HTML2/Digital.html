@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Pro Analog Clock</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #1f1f1f, #2c3e50);
+        color: white;
+      }
+
+      .clock {
+        width: 260px;
+        height: 260px;
+        border: 8px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        position: relative;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      }
+
+      .hand {
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform-origin: bottom;
+        transform: translateX(-50%) rotate(0deg);
+        border-radius: 10px;
+      }
+
+      .hour {
+        width: 6px;
+        height: 60px;
+        background: white;
+      }
+
+      .minute {
+        width: 4px;
+        height: 80px;
+        background: #00ffcc;
+      }
+
+      .second {
+        width: 2px;
+        height: 100px;
+        background: red;
+      }
+
+      .center-dot {
+        width: 12px;
+        height: 12px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* Numbers */
+      .number {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: rotate(calc(30deg * var(--i))) translateY(-110px)
+          rotate(calc(-30deg * var(--i)));
+        font-size: 16px;
+        color: #ddd;
+      }
+
+      /* Date */
+      #date {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #ccc;
+        letter-spacing: 1px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="clock">
+      <!-- Numbers -->
+      <div class="number" style="--i: 1">1</div>
+      <div class="number" style="--i: 2">2</div>
+      <div class="number" style="--i: 3">3</div>
+      <div class="number" style="--i: 4">4</div>
+      <div class="number" style="--i: 5">5</div>
+      <div class="number" style="--i: 6">6</div>
+      <div class="number" style="--i: 7">7</div>
+      <div class="number" style="--i: 8">8</div>
+      <div class="number" style="--i: 9">9</div>
+      <div class="number" style="--i: 10">10</div>
+      <div class="number" style="--i: 11">11</div>
+      <div class="number" style="--i: 12">12</div>
+
+      <!-- Hands -->
+      <div class="hand hour" id="hour"></div>
+      <div class="hand minute" id="minute"></div>
+      <div class="hand second" id="second"></div>
+
+      <div class="center-dot"></div>
+    </div>
+
+    <div id="date"></div>
+
+    <script>
+      const hour = document.querySelector("#hour");
+      const minute = document.querySelector("#minute");
+      const second = document.querySelector("#second");
+      const dateEl = document.querySelector("#date");
+
+      function updateClock() {
+        const now = new Date();
+
+        const sec = now.getSeconds() + now.getMilliseconds() / 1000;
+        const min = now.getMinutes();
+        const hr = now.getHours();
+
+        const secDeg = sec * 6;
+        const minDeg = min * 6 + sec * 0.1;
+        const hrDeg = hr * 30 + min * 0.5;
+
+        second.style.transform = `translateX(-50%) rotate(${secDeg}deg)`;
+        minute.style.transform = `translateX(-50%) rotate(${minDeg}deg)`;
+        hour.style.transform = `translateX(-50%) rotate(${hrDeg}deg)`;
+
+        dateEl.innerHTML = now.toDateString();
+      }
+
+      setInterval(updateClock, 16); // smooth animation (~60fps)
+      updateClock();
+    </script>
+  </body>
+</html>

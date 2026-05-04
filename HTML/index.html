@@ -6,9 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <ul class="ul">
-        <li>Javascript</li>
-    </ul>
+        <button class="btn" id="grey" style="color: grey;">Grey</button>
+        <button class="btn" id="green" style="color: green;">green</button>
+        <button class="btn" id="black" style="color: black;">black</button>
+        <button class="btn" id="purple" style="color: purple;">purple</button>
     <script>
         // let div = document.createElement("div");
         // div.title = "Title"
@@ -31,12 +32,22 @@
         // addLanguage("C++");
         // addLanguage("Rust");
 
-        function addOptLang(Lang) {
-            const li = document.createElement("li");
-            li.appendChild(document.createTextNode(`${Lang}`));
-            document.querySelector(".ul").appendChild(li);
-        }
-        addOptLang("Python");
+        // function addOptLang(Lang) {
+        //     const li = document.createElement("li");
+        //     li.appendChild(document.createTextNode(`${Lang}`));
+        //     document.querySelector(".ul").appendChild(li);
+        // }
+        // addOptLang("Python");
+        let body = document.querySelector("body");
+        let btn = document.querySelectorAll(".btn");
+        btn.forEach((item) => {
+        item.addEventListener("click", (e) => {
+            console.log(e)
+            console.log(e.target)
+            body.style.backgroundColor = e.target.style.color;
+            body.style.backgroundColor = e.target.id;
+        })
+    })
     </script>
 </body>
 </html>
