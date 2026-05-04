@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Asalamualikum</p>
+    <button>Stop</button>
+    <script>
+      function change() {
+        document.querySelector("p").innerText = "Walaikumassalam";
+      }
+      let stopIt = setTimeout(change, 3000);
+      document
+        .querySelector("button")
+        .addEventListener("click", function stop() {
+          clearTimeout(stopIt);
+        });
+    </script>
+  </body>
+</html>
